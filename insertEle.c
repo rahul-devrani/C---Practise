@@ -1,44 +1,45 @@
 #include <stdio.h>
 
-void insertElement(int arr[], int size, int position, int element) {
-    if (position < 0 || position > size) {
-        printf("Invalid position!\n");
-        return;
-    }
-    
+void insertElement(int arr[], int size, int ele, int position) {
     for (int i = size - 1; i >= position; i--) {
         arr[i + 1] = arr[i];
     }
-    
-    arr[position] = element;
+    arr[position] = ele;
 }
 
 int main() {
-    int arr[100], size, position, element;
-
-    
+    int n;
+    printf("**********INPUT**********\n");
     printf("Enter the size of the array: ");
-    scanf("%d", &size);
-    
-    printf("Enter the elements of the array:\n");
-    for (int i = 0; i < size; i++) {
+    scanf("%d", &n);
+
+    int arr[n+ 1];
+
+    printf("Enter %d elements for the array:\n", n);
+    for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
-    
-    printf("Enter the position to insert the element: ");
-    scanf("%d", &position);
-    
+
+    int element, position;
+
     printf("Enter the element to insert: ");
     scanf("%d", &element);
-    
-    insertElement(arr, size, position, element);
-    size++;
-    
-   
-    printf("The array after inserting the element is:\n");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
+
+    printf("Enter the position to insert: ");
+    scanf("%d", &position);
+
+    if (position < 0 || position > n) {
+        printf("Invalid position for insertion.\n");
+    } else {
+        insertElement(arr, n, element, position);
+        n++; 
+        printf("**********OUTPUT**********\n");
+        printf("Array after insertion: ");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
     }
-    
+
     return 0;
 }
